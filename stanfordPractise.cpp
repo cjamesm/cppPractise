@@ -3,13 +3,18 @@
 // int metersToFeetAndInchesConvertor();
 // int computeGaussSum()
 // int weirdOddNumberSum()
-// 
+// int gimmeLargestNumber()
+// int averageList()
+// int primeFactorisation()
 
 #include "stdafx.h"
 #include <iostream>
 using namespace std;
 const double INCH_TO_METERS_FACTOR = 0.0254;
 const int FOOT_TO_INCHES_FACTOR = 12;
+const int SENTINEL = -1;
+
+
 
 int main()
 {
@@ -18,10 +23,82 @@ int main()
 
 
 
+
+
+int primeFactorisation()
+{
+	int n;
+	cout << "Enter a number to get the prime factorisation." << endl;
+	cin >> n;
+	cout << "The number is: " << n << ", so here we go." << endl;
+
+	int currentNumber = 2;
+	while (n != 1)
+	{
+		if (n % currentNumber == 0)
+		{ 
+			n /= currentNumber;
+			cout << currentNumber;
+			cout << (n != 1 ? " x " : "\n");
+			
+		}
+		else
+		{
+			currentNumber++;
+		}
+	}
+	return 0;
+}
+
+
+
+
+int reverseDigits()
+{
+	int result = 0, n;
+	cout << "Gimme an integer, I'll give the digits in reverse order" << endl;
+	cin >> n;
+	while (n > 0)
+	{
+		result *= 10;
+		result += n % 10;
+		n /= 10;
+
+	}
+	cout << "result: " << result << endl;
+	return 0;
+}
+
+int averageList()
+{
+	cout << "This program finds the average of a list of numbers." << endl;
+	cout << "Use " << SENTINEL << " to signal the end." << endl;
+	int total = 0, cardinality = 0;
+	while (true)
+	{
+		int value;
+		cout << " ? ";
+		cin >> value;
+		if (value == SENTINEL) break;
+		total += value;
+		cardinality++;
+	}
+	cout << "The average is " << total / cardinality << endl;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
 int gimmeLargestNumber()
 {
 	int i;
-	int largestNumber = 0;
+	int largestNumber = 0, secondLargest = 0;
 	cout << "Keep hitting numbers until you get bored and then hit 0, then I'll give you the largest, because I'm nice like that." << endl;
 	while (true)
 	{
@@ -32,9 +109,12 @@ int gimmeLargestNumber()
 			break;
 		}
 		if (i > largestNumber)
+		{
+			secondLargest = largestNumber;
 			largestNumber = i;
+		}
 	}
-	cout << "The largest number ended up being: " << largestNumber << endl;
+	cout << "The largest number ended up being: " << largestNumber << " and the second largest: " << secondLargest << endl;
 	return 0;
 }
 
