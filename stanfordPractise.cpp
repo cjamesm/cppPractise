@@ -6,23 +6,118 @@
 // int gimmeLargestNumber()
 // int averageList()
 // int primeFactorisation()
+// int hofstadter()
+// int leibniz()
+// int piCircleMethod()
+// 
+
+
 
 #include "stdafx.h"
 #include <iostream>
+
 using namespace std;
+
 const double INCH_TO_METERS_FACTOR = 0.0254;
 const int FOOT_TO_INCHES_FACTOR = 12;
 const int SENTINEL = -1;
 
 
 
+
 int main()
 {
+
+
 	return 0;
 }
 
 
 
+
+
+
+
+
+
+int piCircleMethod()
+{
+	double piEstimate = 0.0;
+	int radius = 2, numberOfRectangles = 50000;
+	double w = double(radius) / numberOfRectangles;
+	
+	cout << "Here we're going to calculate pi by looking at the area of a circle, radius " << radius << "." << endl;
+	cout << "There are " << numberOfRectangles << " rectangles of " << w << " width." << endl;
+
+	for (int i = 1; i < numberOfRectangles; i++)
+	{
+		double x = w * i;
+		double h = sqrt(radius*radius - x*x);
+
+		piEstimate += h*w;
+
+	}
+	cout << "Then if everything hasn't gone horrible wrong, we should have pi!" << endl;
+
+	cout << "So here it is... pi=" << piEstimate << ". Was it right? You decide!" << endl;
+	
+	return 0;
+}
+
+int leibniz()
+{
+	//Did I really do the type conversion right here? I mean, Leibniz ain't accurate but only accurate to 3dp?!
+	cout << "I distinctly remember doing this one at my course at uni! Here we go." << endl;
+	
+	double sum = 0;
+
+	for (int i = 0; i < 10000; i++)
+	{
+		double term = 1.0 / (1.0 + 2*i);
+
+		if (i % 2 == 0)
+		{
+			sum += term;
+		}
+		else
+		{
+			sum -= term;
+		}
+	}
+	cout << "pi/4 is " << sum << " so pi=" << sum * 4 << ", isn't it" << endl;
+	
+	return 0;
+}
+
+int hofstadter()
+{
+	int n, iterations = 0;
+
+	cout << "Enter a number to make it hailstone!" << endl;
+	cin >> n;
+
+	while (n != 1)
+	{
+		if (n % 2 == 0)
+		{
+			//Ooh that's an interesting bug... if we put the expression in the cout line, it seems to evaluate
+			// right to left and so the value of n is broken afterwards! Easiest thing to do: split the statements.
+			//cout << n << " is even so we divide it by 2 to make " << (n /= 2) << "!" << endl;
+			cout << n << " is even so we divide it by 2 to make ";
+			cout << (n /= 2) << "!" << endl;
+		}
+		else
+		{
+			cout << n << " is odd so we multiply by 3 and add 1 to make ";
+			cout << (n = n * 3 + 1) << "!" << endl;
+		}
+		iterations++;
+	}
+	cout << "We've now reached 1 so we can stop! Phew! It only took " << iterations << " iterations!" << endl;
+
+
+	return 0;
+}
 
 
 int primeFactorisation()
