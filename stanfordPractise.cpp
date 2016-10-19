@@ -9,7 +9,6 @@
 // int hofstadter()
 // int leibniz()
 // int piCircleMethod()
-// 
 
 
 
@@ -25,7 +24,7 @@ const int SENTINEL = -1;
 
 
 
-int main()
+int oldmain()
 {
 
 
