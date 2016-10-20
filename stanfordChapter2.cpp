@@ -7,17 +7,148 @@
 using namespace std;
 
 int metersToFeetAndInchesConvertor(int numMetres, double & feet, double & inches);
-
 int roundToNearestInteger(double);
-
-int windChillMain();
 double windChill(double, double);
+bool isPerfect(int);
+bool isPrime(int);
+double sqrtApprox(double);
+
+
+
+
+
 
 int main()
 {
-	windChillMain();
 	return 0;
 }
+
+
+
+int sqrtApproxMain()
+{
+	double n;
+	cout << "Enter a number to get a lovely approximation of a sqrt that hopefully won't explode my laptop!" << endl;
+
+	cin >> n;
+
+
+	cout << "The sqrt of " << n << " is " << sqrtApprox(n) << 
+		", which is/isn't bad considering the real computed result is " << sqrt(n) << "!" << endl;
+
+
+	return 0;
+}
+
+
+
+
+double sqrtApprox(double x)
+{
+	double g = x / 2;
+	int iter = 0;
+	while (true)
+	{
+		double newGuess = (g + x / g)/2;
+		if (g == newGuess)
+		{
+			break;
+		}
+		else
+		{
+			g = newGuess;
+		}
+
+		iter++;
+		if (iter % 100 == 0)
+			cout << g << endl;
+	}
+
+	return g;
+}
+
+int isPrimeMain()
+{
+	cout << "Here are the prime numbers:" << endl;
+	for (int i = 2; i < 1000; i++)
+	{
+		if (isPrime(i))
+		{
+			cout << i << " ";
+		}
+		if (i % 10 == 0)
+		{
+			cout << endl;
+		}
+	}	
+	return 0;
+}
+
+
+bool isPrime(int n)
+{
+	for (int i = 2; i < n; i++)
+	{
+		if (n % i == 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+
+
+
+
+int isPerfectMain()
+{
+	int n;
+	cout << "Enter a number to test if it is perfect." << endl;
+	cin >> n;
+
+	
+	cout << "Computer says that " << n << " is: ";
+	if (isPerfect(n))
+	{
+		cout << "perfect." << endl;
+	}
+	else
+	{
+		cout << "not perfect." << endl;
+	}
+
+	for (int i = 1;i < 10000;i++)
+	{
+		if (isPerfect(i))
+		{
+			cout << i << " is Perfect." << endl;
+		}
+	}
+
+	return 0;
+}
+
+bool isPerfect(int n)
+{
+	int sum = 0;
+	for (int i = 1; i < n; i++)
+	{
+		if (n % i == 0)
+		{
+			sum += i;
+			if (sum > n)
+				break;
+		}
+	}
+	if (sum == n)
+	{
+		return true;
+	}
+
+	return false;
+}
+
 
 int windChillMain()
 {
