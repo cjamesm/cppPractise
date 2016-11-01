@@ -14,7 +14,7 @@ bool isPrime(int);
 double sqrtApprox(double);
 
 
-
+void findEaster(int year, string & month, int & day);
 
 
 
@@ -23,6 +23,36 @@ int main()
 	return 0;
 }
 
+int divideForGauss(int expression, int divisor)
+{
+	int result = expression % divisor;
+	if (result % 2)
+		return 0;
+	else 
+		return result;
+}
+void findEaster(int year, string & month, int & day)
+{
+	if (year < 1700 || year > 1899)
+		cerr << "Try a date which is between 1700 and 1899 like we told you dumbass." << endl;
+
+	int a = divideForGauss(year, 19);
+	int b = divideForGauss(year, 4);
+	int c = divideForGauss(year, 7);
+
+	int d = divideForGauss((19 * a + 23), 30);
+
+	int expression;
+	if (year < 1800)
+	{
+		expression = 2 * b + 4 * c + 6 * d + 3;
+	}
+	else
+	{
+		expression = 2 * b + 4 * c + 6 * d + 4;
+	}
+	int e = divideForGauss(expression, 7);
+}
 
 
 int sqrtApproxMain()
