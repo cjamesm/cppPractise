@@ -12,9 +12,7 @@ double windChill(double, double);
 bool isPerfect(int);
 bool isPrime(int);
 double sqrtApprox(double);
-
-
-void findEaster(int year, string & month, int & day);
+void findEaster(int year, int & month, int & day);
 
 
 
@@ -23,19 +21,43 @@ int main()
 	return 0;
 }
 
+
+
+
+int findEasterMain()
+{
+	//I know that this is coming out wrong but the language of the question is pretty shitty. Moving on.
+	cout << "Input a year in the 18th or 19th Century" << endl;
+	int year, month, day;
+	cin >> year;
+	
+	findEaster(year, month, day);
+	cout << "Easter was on " << month << " the " << day << " in " << year << "." << endl;
+
+	return 0;
+}
+
 int divideForGauss(int expression, int divisor)
 {
-	int result = expression % divisor;
-	if (result % 2)
+	int remainder = expression % divisor;
+
+	int division = (expression - remainder) / divisor;
+	if (division % 2 == 0)
+	{
 		return 0;
-	else 
-		return result;
+	}
+	else
+	{
+		return remainder;
+	}
 }
-void findEaster(int year, string & month, int & day)
+void findEaster(int year, int & month, int & day)
 {
 	if (year < 1700 || year > 1899)
+	{
 		cerr << "Try a date which is between 1700 and 1899 like we told you dumbass." << endl;
-
+		exit(EXIT_FAILURE);
+	}
 	int a = divideForGauss(year, 19);
 	int b = divideForGauss(year, 4);
 	int c = divideForGauss(year, 7);
@@ -52,6 +74,19 @@ void findEaster(int year, string & month, int & day)
 		expression = 2 * b + 4 * c + 6 * d + 4;
 	}
 	int e = divideForGauss(expression, 7);
+
+	if (d + e <= 9)
+	{
+		//month = "March";
+		month = 3;
+		day = 22 + d + e;
+	}
+	else
+	{
+		//month = "April";
+		month = 4;
+		day = d + e - 9;
+	}
 }
 
 
